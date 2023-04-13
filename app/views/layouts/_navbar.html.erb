@@ -1,0 +1,7 @@
+<h2>CartBliss</h2><hr/>
+<p> Hey <%= current_user.name %>! </p>
+<% if current_user %>
+  <p><%= link_to "Sign out", destroy_user_session_path, method: :delete  %></p>
+<% else %>
+  <p><%= link_to "Sign up", new_user_registration_path %></p>
+<% end %>
