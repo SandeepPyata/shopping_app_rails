@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id          :integer          not null, primary key
+#  status      :string
+#  total_price :integer
+#  user_id     :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+one:
+  status: MyString
+  total_price: 1
+  user: one
+
+two:
+  status: MyString
+  total_price: 1
+  user: two
