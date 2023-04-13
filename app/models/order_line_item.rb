@@ -11,5 +11,8 @@
 #
 class OrderLineItem < ApplicationRecord
   belongs_to :order
-  belongs_to :product
+
+  def product
+    return Product.find(id=self.product_id)
+  end
 end
