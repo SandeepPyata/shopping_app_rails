@@ -5,7 +5,7 @@
             <p>Name: <%= product.name %></p>
             <p>Description: <%= product.description %></p>
             <p>Price: &#8377; <%= product.price %></p>
-            <%= link_to 'Add to Cart', add_to_cart_path(product_id: product.id), method: :post, class: "btn btn-primary" %>
+            <%= link_to 'Add to Cart', add_to_cart_path(product_id: product.id), class: "btn btn-primary" %>
         </div>
     </div>
 <% end %>

@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   # cart
   resources :cart
   get "my-cart", to: "cart#my_cart"
-  post "add_to_cart/:product_id", to: "cart#add_to_cart", as: :add_to_cart
+  get "/add_to_cart/:product_id", to: "cart#add_to_cart", as: :add_to_cart
 
   # for custom sign-up fields
   devise_for :users, controllers: {

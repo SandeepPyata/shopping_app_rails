@@ -1,15 +1,11 @@
 class ProductsController < ApplicationController
-  before_action :set_products
   def new
   end
 
   def index
+    @products = Product.all
   end
 
   private
-    def set_products
-      @products = Product.all
-    end
-
 
 end
