@@ -4,7 +4,7 @@
 #
 #  id                     :integer          not null, primary key
 #  name                   :string
-#  is_admin               :string
+#  is_admin               :boolean          default(FALSE)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null
@@ -23,7 +23,4 @@ class User < ApplicationRecord
   has_one :cart
   has_many :orders
 
-  def name
-    email.split('@')[0]
-  end
 end

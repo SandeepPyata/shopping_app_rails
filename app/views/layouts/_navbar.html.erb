@@ -1,7 +1,14 @@
-<h2>CartBliss</h2><hr/>
-<% if current_user %>
-  <p> Hey <%= current_user.name %>! </p>
-  <p><%= link_to "Sign out", destroy_user_session_path, method: :delete  %></p>
-<% else %>
-  <p><%= link_to "Sign up", new_user_registration_path %></p>
-<% end %>
+<nav class="navbar" style="background-color: #e3f2fd;">
+  <div class="container">
+    <div class="h2 col-4">CartBliss</div>
+    <% if user_signed_in? %>
+    <div class="navbar col-5">
+      <p class="h5"><%= link_to "Home", root_url %></p>
+      <p class="h5"><%= link_to "My orders", my_orders_path %></p>
+      <p class="h5"><%= link_to "Profile", profile_path %></p>
+      <p class="h5"><%= link_to "Cart", my_cart_path %></p>
+      <p class="h5"><%= link_to "Sign out", destroy_user_session_path, method: :delete , class: "btn btn-primary" %></p>
+    </div>
+    <% end %>
+  </div>
+</nav>

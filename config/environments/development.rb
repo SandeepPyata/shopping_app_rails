@@ -71,4 +71,7 @@ Rails.application.configure do
 
   # devise-specific config
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Auto refresh live-reload
+  config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 end

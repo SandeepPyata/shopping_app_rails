@@ -1,4 +1,4 @@
-<% if current_user.is_admin=="No" %>
+<% if current_user.is_admin==false %>
     <%= render "user"%>
 <% else %>
     <%= render "admin" %>

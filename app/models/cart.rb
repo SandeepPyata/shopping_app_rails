@@ -9,4 +9,6 @@
 #
 class Cart < ApplicationRecord
   belongs_to :user
+  has_many :cart_line_items
+  has_many :products, through: :cart_line_items
 end
