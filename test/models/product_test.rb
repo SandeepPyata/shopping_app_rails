@@ -8,6 +8,7 @@
 #  price       :float
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  image_link  :string
 #
 require "test_helper"
 

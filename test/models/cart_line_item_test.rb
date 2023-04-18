@@ -3,7 +3,7 @@
 # Table name: cart_line_items
 #
 #  id         :integer          not null, primary key
-#  quantity   :integer
+#  quantity   :integer          default(0)
 #  cart_id    :integer          not null
 #  product_id :integer          not null
 #  created_at :datetime         not null

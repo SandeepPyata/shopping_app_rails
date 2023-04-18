@@ -8,9 +8,7 @@
             <p>Name: <%= product.name %></p>
             <p>Description: <%= product.description %></p>
             <p>Price: &#8377; <%= product.price %></p>
-            <p>
-                <%= link_to 'Add to Cart', add_to_cart_path(product_id: product.id), class: "btn btn-primary" %>
-            <p>
+            <p><%= link_to "More details", product_page_path(id: product.id) %></p>
         </div>
     </div>
 <% end %>

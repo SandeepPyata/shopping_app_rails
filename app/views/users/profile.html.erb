@@ -8,7 +8,7 @@
             <% current_user.addresses.each do |address| %>
                 <div class="container border p-2 col-3">
                     <%= address.location_details %>
-                    <%# <%= link_to, "Update address", update_address_path %>
+                    <%# <%= link_to, "Update address", address_update_path(id: address.id) %>
                 </div>
             <% end %>
         </div>

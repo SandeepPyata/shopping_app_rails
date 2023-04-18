@@ -1,4 +1,6 @@
 class CartController < ApplicationController
+  before_action :set_cart
+
   def add_to_cart
     """
     - Getting product id from the url
@@ -7,15 +9,30 @@ class CartController < ApplicationController
 
     """
     product_id = params[:product_id]
-    cart = current_user.cart || Cart.create(user_id: current_user.id)
-    cart_line_item = cart.cart_line_items.find_or_initialize_by(product_id: product_id)
-    cart_line_item.quantity += 1
-    cart_line_item.save
-    redirect_to root_url
+    cart_line_item = @cart.cart_line_items.find_or_initialize_by(product_id: product_id)
+    @cart.add_product_to_cart cart_line_item
+    path = @cart.redirect_to_path request.referrer, product_id
+    redirect_to path
+  end
+
+  def increase_product_quantity
+    product_id = params[:product_id]
+    cart_line_item = CartLineItem.find_by(cart_id: @cart.id, product_id: product_id)
+    @cart.add_product_to_cart cart_line_item
+    path = @cart.redirect_to_path request.referrer, product_id
+    redirect_to path
+  end
+
+  def decrease_product_quantity
+    product_id = params[:product_id]
+    cart_line_item = CartLineItem.find_by(cart_id: @cart.id, product_id: product_id)
+    @cart.remove_product_from_cart @cart.id, cart_line_item
+    path = @cart.redirect_to_path request.referrer, product_id
+    redirect_to path
   end
 
   private
-    def set_params
-
+    def set_cart
+      @cart = current_user.cart || Cart.create(user_id: current_user.id)
     end
 end
