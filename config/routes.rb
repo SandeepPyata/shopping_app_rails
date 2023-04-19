@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resource :addresses
   get "/new_address", to: "addresses#new_address_form"
   post "/add_address", to: "addresses#add_new_address"
-  get "/addresses/update/:id", to: "addresses#address_update_form", as: :address_update
+  get "/addresses/edit", to: "addresses#edit", as: :edit_addresses_path
 
   # orders
   resource :orders

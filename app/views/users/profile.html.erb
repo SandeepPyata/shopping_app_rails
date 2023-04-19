@@ -1,17 +1,21 @@
-<div class="container-fluid col-8">
-    <h3>Profile section</h3>
-    <p>Name : <%= current_user.name %></p>
-    <p>Email :<%= current_user.email %></p>
-    <% if current_user.addresses.present? %>
-        <p>Saved addresses :</p>
-        <div class="container row">
-            <% current_user.addresses.each do |address| %>
-                <div class="container border p-2 col-3">
-                    <%= address.location_details %>
-                    <%# <%= link_to, "Update address", address_update_path(id: address.id) %>
+<div class="container-fluid d-flex col-6">
+    <div class="container">
+        <h3>Profile section</h3>
+        <div class="container">
+            <p>Name : <%= current_user.name %></p>
+            <p>Email :<%= current_user.email %></p>
+            <% if current_user.addresses.present? %>
+                <p>Saved addresses :</p>
+                <div class="">
+                    <% current_user.addresses.each do |address| %>
+                        <div class="border p-2 col-3">
+                            <%= address.location_details %>
+                            <%= link_to, "Update address", edit_addresses_path(address) %>
+                        </div>
+                    <% end %>
                 </div>
             <% end %>
+            <%= link_to "Add new address", new_address_path %>
         </div>
-    <% end %>
-    <%= link_to "Add new address", new_address_path %>
+    </div>
 </div>

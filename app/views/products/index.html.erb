@@ -1,6 +1,24 @@
-<% if current_user.is_admin==false %>
-    <%= render "user"%>
-<% else %>
-    <%= render "admin" %>
+<div class="container-fluid d-flex justify-content-center">
+    <%= search_form_for @q, class: "d-flex container justify-content-center p-2" , url: :root do |f| %>
+        <%= f.search_field :name_cont, placeholder: "Search Products..." , class: "border border-primary col-5 rounded-pill me-3"%>
+        <%= f.submit "Search", class: "border border-primary btn btn-warning" %>
+    <% end %>
+</div>
+
+
+<h3>Products</h3>
+<% @products.each do |product| %>
+    <%= link_to product_page_path(product), class: "product-block" do %>
+        <div class="d-inline-flex p-2 w-25">
+            <div class="container border">
+                <div class="img-fluid text-center">
+                    <img src=<%= product.image_link %> width="200" height="200">
+                </div>
+                <p>Name: <%= product.name %></p>
+                <p>Description: <%= product.description %></p>
+                <p>Price: &#8377; <%= product.price %></p>
+            </div>
+        </div>
+    <% end %>
 <% end %>
 

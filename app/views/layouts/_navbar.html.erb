@@ -1,14 +1,23 @@
 <nav class="navbar" style="background-color: #e3f2fd;">
   <div class="container">
-    <div class="h2 col-4">CartBliss</div>
-    <% if user_signed_in? %>
-    <div class="navbar col-5">
-      <p class="h5"><%= link_to "Home", root_url %></p>
-      <p class="h5"><%= link_to "My orders", my_orders_path %></p>
-      <p class="h5"><%= link_to "Profile", profile_path %></p>
-      <p class="h5"><%= link_to "Cart", my_cart_path %></p>
-      <p class="h5"><%= link_to "Sign out", destroy_user_session_path, method: :delete , class: "btn btn-primary" %></p>
+    <div class="d-flex h2 col-4">
+      <p><img src="https://cdn2.iconfinder.com/data/icons/love-wedding-heart-flat-sticker-black-style/804/Bag-Shopping-Heart-512.png" width=40px /></p> &nbsp;
+      <p>CartBliss</p> &nbsp;
+      <p><img src="https://cdn2.iconfinder.com/data/icons/love-wedding-heart-flat-sticker-black-style/804/Bag-Shopping-Heart-512.png" width=40px /> </p>
     </div>
+    <% if user_signed_in? %>
+      <div class="navbar col-5">
+        <p class="h5"><%= link_to "Home", root_url, class: "text-decoration-none" %></p>
+        <p class="h5"><%= link_to "My orders", my_orders_path, class: "text-decoration-none" %></p>
+        <p class="h5"><%= link_to "Profile", profile_path, class: "text-decoration-none" %></p>
+        <p class="h5"><%= link_to "Cart", my_cart_path, class: "text-decoration-none" %></p>
+        <p class="h5"><%= link_to "Sign out", destroy_user_session_path, method: :delete , class: "btn btn-primary" %></p>
+      </div>
+    <% else %>
+      <div class="col-5 d-flex justify-content-evenly align-items-center">
+        <%= link_to "Log in", new_user_session_path, :class => 'btn btn-primary' %><br />
+        <%= link_to "Sign up", new_user_registration_path ,:class => 'btn btn-primary'%><br />
+      </div>
     <% end %>
   </div>
 </nav>

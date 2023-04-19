@@ -18555,3 +18555,9 @@ textarea.form-control-lg {
 .bi-wikipedia::before {
   content: "\f8cc";
 }
+
+.product-block,
+.product-block:hover {
+  text-decoration: none;
+  color: inherit;
+}

@@ -23,4 +23,12 @@ class Product < ApplicationRecord
     quantity
   end
 
+  def self.ransackable_attributes(auth_object=nil)
+    ["description", "name"]
+  end
+
+  def self.ransackable_associations(auth_object=nil)
+    ["cart_line_items", "carts"]
+  end
+
 end
