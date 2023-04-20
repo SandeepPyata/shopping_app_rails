@@ -10,9 +10,10 @@
                     <% current_user.addresses.each do |address| %>
                         <div class="border p-2 col-3">
                             <%= address.location_details %>
-                            <%= link_to, "Update address", edit_addresses_path(address) %>
                         </div>
-                    <% end %>
+                        <%= link_to "Update address", edit_address_path(address) %>
+                      <% end %>
+
                 </div>
             <% end %>
             <%= link_to "Add new address", new_address_path %>
