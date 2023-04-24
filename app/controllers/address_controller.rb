@@ -1,39 +1,29 @@
 class AddressController < ApplicationController
-  before_action :set_address, only: [:edit, :show, :update]
+  before_action :set_address, only: [:edit, :update]
 
   def index
-    # Get all user addresses
+    redirect_to profile_path
   end
 
-  def show
+  def create
+    @address = current_user.addresses.build(params.permit(:location_details))
+    @address.user_id = current_user.id
+    @address.save
+    redirect_to profile_path
   end
-
-  def new
-    address = current_user.addresses.build(address_params)
-  end
-
-  def edit
-
-  end
-
-  #def add_new_address
-    #address = current_user.addresses.build(address_params)
-    #address.user_id = current_user.id
-    #address.save
-    #redirect_to profile_path
-  #end
 
   def update
-    puts "hello"
+    @address.update(address_params)
+    @address.save
     redirect_to profile_path
   end
 
   private
   def set_address
-    @address = Address.find(params[:id]) if Address.find_by_id(params[:id])
+    @address = Address.find(params[:id])
   end
 
   def address_params
-    params.permit(:location_details)
+    params.require(:address).permit(:location_details)
   end
 end

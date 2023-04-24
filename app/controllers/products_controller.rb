@@ -19,6 +19,4 @@ class ProductsController < ApplicationController
     end
   end
 
-  private
-
 end

@@ -4,14 +4,14 @@
         <% product = @cart.product_details(cart_line_item.product_id) %>
         <% quantity = cart_line_item.quantity %>
 
-        <div class="d-inline-flex p-1 w-25">
-            <div class="d-flex container border border-secondary rounded">
+        <div class="d-inline-flex p-1 col-4">
+            <div class="d-flex container-fluid border border-secondary rounded">
                 <div class="d-flex align-content-center justify-content-center">
                     <img src=<%= product.image_link %> width="200" height="200" />
                 </div>
                 <div>
                     <p>Name: <%= product.name %></p>
-                    <p>Description: <%= product.description %></p>
+                    <p>Description: <p class = "overflow-auto"><%= product.description %></p></p>
                     <p>Product price: &#8377; <%= product.price %></p>
                     <p>Total price for product: &#8377; <%= product.price * quantity %></p>
                     <p>
@@ -19,9 +19,18 @@
                         <span>Quantity: <%= quantity %></span>
                         <span><%= link_to "-" , decrease_product_quantity_path(product_id: product.id), class: "btn border-dark" %></span>
                     <p>
+                    <%= link_to "Remove product from cart", remove_product_path(product_id: product.id), class: "btn btn-danger" %>
                 </div>
             </div>
         </div>
     <% end %>
-    <p class="text-primary border-light">Total Price for your cart items: &#8377; <%= @cart.get_cart_total(@cart.id) %>
+    <div>
+        <p class="text-primary border-light">Total Price for your cart items: &#8377; <%= @cart.get_cart_total(@cart.id) %>
+    </div>
+
+    <% if @cart.get_cart_total(@cart.id)>0 %>
+        <div>
+            <%= link_to "Checkout ->", checkout_path, class: "btn btn-success" %>
+        </div>
+    <% end %>
 </div>

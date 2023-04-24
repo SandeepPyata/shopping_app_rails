@@ -1,1 +1,17 @@
 <h2>My orders page</h2>
+
+<div class="container">
+    <div class="col-6 container">
+        <p>Total Orders (<%= @orders.size %>)</p>
+        <% @orders.reverse.each_with_index do |order, index| %>
+
+            <div class="container border border-3">
+                <p>Status: <i><%= order.status %></i></p>
+                <p>Total price: &#8377; <%= order.total_price %></p>
+                <p>Ordered on: <%= order.created_at.localtime.strftime("%d-%m-%Y, %H:%M") %>
+                <p><%= link_to "View details", order_path(order.id) %>
+            </div>
+
+        <% end %>
+    </div>
+</div>

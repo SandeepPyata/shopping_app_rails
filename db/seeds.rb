@@ -22,7 +22,7 @@ Product.create!([
     description: "it writes and can be erased",
     price: 4.0,
     image_link:
-    "https://images.unsplash.com/photo-1595584354232-f07d525d87c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHBlbmNpbHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+    "https://m.media-amazon.com/images/I/61T1q6XhylL._SX522_.jpg"
   },
   {
     id: 3,

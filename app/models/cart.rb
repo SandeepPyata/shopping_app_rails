@@ -20,17 +20,8 @@ class Cart < ApplicationRecord
     Product.find_by(id: product_id)
   end
 
-  def add_product_to_cart cart_line_item
-    cart_line_item.quantity += 1
-    cart_line_item.save
-  end
-
   def remove_product_from_cart cart_id, cart_line_item
-    cart_line_item.quantity -= 1
-    cart_line_item.save
-    if cart_line_item.quantity == 0
-      CartLineItem.delete_by(cart_id: cart_id, product_id: cart_line_item.product_id)
-    end
+    CartLineItem.delete_by(cart_id: cart_id, product_id: cart_line_item.product_id)
   end
 
   def get_cart_total cart_id

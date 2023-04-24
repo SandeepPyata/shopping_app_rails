@@ -1,0 +1,58 @@
+<!--
+Select address
+Add new address -> new_address_path (use request.referrer)
+After finalizing address,
+    . final-review of items
+    . order total
+    . expected delivery date
+    . place order button
+-->
+
+<div class="container">
+    <h4>Checkout page</h4>
+    <hr/>
+    <%= form_with(url: orders_path, model: @order, local: true) do |f| %>
+
+        <div class="container">
+            <h6>1. Select an address</h6>
+            <% current_user.addresses.each do |address| %>
+                <p>
+                    <%= f.radio_button :delivery_location, address.location_details %>
+                    <%= f.label address.location_details %>
+                <p>
+            <% end %>
+            <%= link_to "Add new address", new_address_path %>
+        </div>
+        <br/>
+        <div class="container">
+            <h6>2. Order summary</h6>
+            <div>
+                <% @cart.get_cart_line_items(@cart.id).each do |cart_line_item| %>
+                    <% product = @cart.product_details(cart_line_item.product_id) %>
+                    <% quantity = cart_line_item.quantity %>
+
+                    <div class="d-inline-flex p-1 col-4">
+                        <div class="d-flex container-fluid border border-secondary rounded">
+                            <div class="d-flex align-content-center justify-content-center">
+                                <img src=<%= product.image_link %> width="200" height="200" />
+                            </div>
+                            <div>
+                                <p>Name: <%= product.name %></p>
+                                <p>Description: <p class = "overflow-auto"><%= product.description %></p></p>
+                                <span>Quantity: <%= quantity %></span>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+                <div>
+                    <h5>Order Total: &#8377; <%= @cart.get_cart_total(@cart.id) %></h5>
+                </div>
+            </div>
+        </div>
+        <div>
+            <%= link_to "<- Back to Cart", my_cart_path, class: "btn btn-success" %>
+            <%= f.submit "Place Order ->", class: "btn btn-success" %>
+        </div>
+        <hr/>
+    <% end %>
+</div>
