@@ -30,8 +30,8 @@ Rails.application.routes.draw do
   resources :orders
   get "my_orders", to: "orders#my_orders"
 
-    # TODO use cart member or collection
-    # https://guides.rubyonrails.org/routing.html#adding-collection-routes
+  # TODO use cart member or collection
+  # https://guides.rubyonrails.org/routing.html#adding-collection-routes
   # cart
   resources :cart
   get "my_cart", to: "cart#my_cart"
@@ -40,6 +40,23 @@ Rails.application.routes.draw do
   get "/decrease_product_quantity/:product_id", to: "cart#decrease_product_quantity", as: :decrease_product_quantity
   get "/remove_product/:product_id", to: "cart#remove_product", as: :remove_product
   get "checkout", to: "cart#checkout"
+
+  # resources :cart do
+  #   member do
+  #     get :checkout
+  #     get :add_to_cart, path: 'add_to_cart/:product_id'
+  #     get :increase_product_quantity, path: 'increase_product_quantity/:product_id'
+  #     get :decrease_product_quantity, path: 'decrease_product_quantity/:product_id'
+  #     get :remove_product, path: 'remove_product/:product_id'
+  #   end
+  # end
+  # resources :carts do
+  #   get 'add_to_cart/:product_id', to: 'carts#add_to_cart', as: :add_to_cart, on: :collection
+  #   get 'increase_product_quantity/:product_id', to: 'carts#increase_product_quantity', as: :increase_product_quantity, on: :collection
+  #   get 'decrease_product_quantity/:product_id', to: 'carts#decrease_product_quantity', as: :decrease_product_quantity, on: :collection
+  #   get 'remove_product/:product_id', to: 'carts#remove_product', as: :remove_product, on: :collection
+  #   get 'checkout', to: 'carts#checkout', on: :collection
+  # end
 
   # for custom sign-up fields
   devise_for :users, controllers: {

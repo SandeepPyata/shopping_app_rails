@@ -8,6 +8,12 @@ gem 'devise'    # authentication
 gem 'erb-formatter'
 gem 'cssbundling-rails'
 
+# state machine
+gem 'aasm', '~> 4.12'
+gem 'after_commit_everywhere', '~> 1.0'
+gem 'spring'
+gem 'spring-watcher-listen', '~> 2.0.0'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.2"
 

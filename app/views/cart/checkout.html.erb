@@ -15,9 +15,9 @@ After finalizing address,
 
         <div class="container">
             <h6>1. Select an address</h6>
-            <% current_user.addresses.each do |address| %>
+            <% current_user.addresses.each_with_index do |address,index| %>
                 <p>
-                    <%= f.radio_button :delivery_location, address.location_details %>
+                    <%= f.radio_button :delivery_location, address.location_details, :checked => (index==0) %>
                     <%= f.label address.location_details %>
                 <p>
             <% end %>

@@ -14,6 +14,37 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_line_items
 
+  include AASM
+
+  aasm :column => :status do
+    state :ordered, initial: true
+    state :dispatched
+    state :canceled
+    state :delivered
+    state :returned
+    state :returnSuccessful
+
+    event :dispatch do
+      transitions from: :ordered, to: :dispatched
+    end
+
+    event :cancel do
+      transitions from: :dispatched, to: :canceled
+    end
+
+    event :deliver do
+      transitions from: :canceled, to: :delivered
+    end
+
+    event :return do
+      transitions from: :delivered, to: :returned
+    end
+
+    event :returnSuccess do
+      transitions from: :returned, to: :returnSuccessful
+    end
+  end
+
   def product_details product_id
     Product.find_by(id: product_id)
   end
