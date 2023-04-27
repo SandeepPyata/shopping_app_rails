@@ -1,24 +1,39 @@
 <div class="container-fluid d-flex justify-content-center">
-    <%= search_form_for @q, class: "d-flex container justify-content-center p-2" , url: :root do |f| %>
-        <%= f.search_field :name_cont, placeholder: "Search Products..." , class: "border border-primary col-5 rounded-pill me-3"%>
-        <%= f.submit "Search", class: "border border-primary btn btn-warning" %>
-    <% end %>
+    <div class="col-6">
+        <%= search_form_for @q, class: "d-flex container justify-content-center p-2" , url: :root do |f| %>
+            <%= f.search_field :name_cont, placeholder: "Search Products..." , class: "border border-primary col-6 rounded-pill me-3"%>
+            <%= f.submit "Search", class: "border border-primary btn btn-warning" %>
+        <% end %>
+    </div>
+    <div class="col-2 d-flex m-2">
+        <%= link_to "Add Product", new_products_path, class: "btn btn-success align-self-start" %>
+    </div>
 </div>
 
-
-<h3>Products</h3>
-<% @products.each do |product| %>
-    <%= link_to product_page_path(product), class: "product-block" do %>
-        <div class="d-inline-flex p-2 w-25">
-            <div class="container border">
-                <div class="img-fluid text-center">
-                    <img src=<%= product.image_link %> width="200" height="200">
+<div class="container-fluid">
+    <h3>Products</h3>
+    <% @products.each do |product| %>
+        <%= link_to product_page_path(product), class: "product-block" do %>
+            <div class="d-inline-flex p-2 w-25" style="height:400px">
+                <div class="container border">
+                    <div class="img-fluid text-center">
+                        <img src=<%= product.image_link %> width="50%">
+                    </div>
+                    <br/>
+                    <p>
+                        <span class="h6">Name:</span> <%= product.name %>
+                    </p>
+                    <p class="h-25 overflow-auto">
+                        <span class="h6">Description:</span> <%= product.description%>
+                    </p>
+                    <p>
+                        <span class="h6">Price:</span> &#8377; <%= product.price %>
+                    </p>
+                    <p>
+                        <%# <%= link_to "Remove Product", delete_product_path(product.id) , class: "text-decoration-none btn btn-danger" %>
+                    </p>
                 </div>
-                <p>Name: <%= product.name %></p>
-                <p>Description: <%= product.description %></p>
-                <p>Price: &#8377; <%= product.price %></p>
             </div>
-        </div>
+        <% end %>
     <% end %>
-<% end %>
-
+</div>

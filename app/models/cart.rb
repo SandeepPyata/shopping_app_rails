@@ -9,7 +9,7 @@
 #
 class Cart < ApplicationRecord
   belongs_to :user
-  has_many :cart_line_items
+  has_many :cart_line_items, dependent: :destroy
   has_many :products, through: :cart_line_items
 
   def get_cart_line_items cart_id

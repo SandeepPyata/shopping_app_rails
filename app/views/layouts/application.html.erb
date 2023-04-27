@@ -13,8 +13,13 @@
 
   <body>
     <%= render "layouts/navbar" %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>" style="color:red;font-style:italic">
+          <%= message %>
+        </div>
+      <% end %>
+    </div>
     <div class="container-fluid vh-100">
       <%= yield %>
     </div>

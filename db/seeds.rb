@@ -11,31 +11,31 @@ Product.destroy_all
 Product.create!([
   {
     id: 1,
-    name: "pen",
-    description: "it writes",
-    price: 5.0,
-    image_link: "https://www.shutterstock.com/image-photo/blue-pen-isolated-on-white-260nw-557418118.jpg"
+    name: "Noise Pulse Go Buzz Smart Watch",
+    description: "Tru Sync, BT calling, utility features, Noise Health Suite, 150+ cloud-based & customised watch faces, 100 sports modes, IP68 water resistance, 5 colours.",
+    price: 1699,
+    image_link: "https://m.media-amazon.com/images/I/61akt30bJsL._SX522_.jpg"
   },
   {
     id: 2,
-    name: "pencil",
-    description: "it writes and can be erased",
-    price: 4.0,
+    name: "Redgear Gaming headphones",
+    description: "Redgear Cloak provides enhanced audio bass, Omni-directional microphone, and RGB LED light effect.",
+    price: 599,
     image_link:
-    "https://m.media-amazon.com/images/I/61T1q6XhylL._SX522_.jpg"
+    "https://m.media-amazon.com/images/I/41EJrZlo0UL._SX300_SY300_QL70_FMwebp_.jpg"
   },
   {
     id: 3,
-    name: "eraser",
-    description: "used to erase",
-    price: 3.0,
-    image_link: "https://tiimg.tistatic.com/fp/1/007/763/easy-to-uses-neat-and-clean-rectangular-white-eraser-914.jpg"
+    name: "OnePlus Buds Z2",
+    description: "Active Noise Cancellation, High Quality Sound, 3-MIC ENC Call Noise Reduction, Long Battery Life, and IP55 Water/Sweat Resistance.",
+    price: 4999,
+    image_link: "https://m.media-amazon.com/images/I/51AMqyp+sfL._SX522_.jpg"
   },
   {
     id: 4,
-    name: "sharpner",
-    description: "used to sharpen pencil",
-    price: 3.0,
-    image_link: "https://media.istockphoto.com/id/1403799120/photo/one-pink-colour-sharpner-with-white-background.jpg?b=1&s=170667a&w=0&k=20&c=E3Jywl2VtaUju4ipoV3-CWjR5ntXEO-V-wcMQKqacoY="
+    name: "Acer Nitro 5 11th Gen Laptop",
+    description: "Killer DoubleShot Pro with Ethernet E2600 and Wi-Fi 6 AX1650 maximizes gaming performance.",
+    price: 63300,
+    image_link: "https://m.media-amazon.com/images/I/71evs2WKJjS._SX522_.jpg"
   }
 ])

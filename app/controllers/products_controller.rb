@@ -1,5 +1,10 @@
 class ProductsController < ApplicationController
-  def new
+
+  def create
+    byebug
+    @product = Product.new(products_params)
+    @product.save
+    redirect_to root_path
   end
 
   def index
@@ -18,5 +23,17 @@ class ProductsController < ApplicationController
       end
     end
   end
+
+  def destroy
+    product_id = params[:id]
+    CartLineItem.delete_by(product_id: product_id)
+    Product.delete_by(id: product_id)
+    redirect_to root_path
+  end
+
+  private
+    def products_params
+      params.permit(:name, :description, :price, :image_link)
+    end
 
 end

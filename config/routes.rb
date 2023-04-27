@@ -8,17 +8,21 @@ Rails.application.routes.draw do
     # root to: "users/registrations#new"
   # end
 
+
+  get "show_users", to: "users#show"
+
   # for sign_out
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
+    # get '/users/destroy/:id' => 'devise/registrations#destroy', as: :user_destroy
   end
 
-  # root "/"
+  # root "/", products
   resource :products
   root to: "products#index"
-
-  # products
   get "/products/:id", to: "products#product", as: :product_page
+  get "/products/:id/delete", to: "products#destroy", as: 'delete_product'
+
 
   # users
   get "/profile", to: "users#profile"
@@ -29,6 +33,8 @@ Rails.application.routes.draw do
   # orders
   resources :orders
   get "my_orders", to: "orders#my_orders"
+  get 'update_order_status/:id', to: "orders#update_status", as: :update_order_status
+
 
   # TODO use cart member or collection
   # https://guides.rubyonrails.org/routing.html#adding-collection-routes

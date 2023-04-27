@@ -12,7 +12,7 @@
 #
 class Order < ApplicationRecord
   belongs_to :user
-  has_many :order_line_items
+  has_many :order_line_items, dependent: :destroy
 
   include AASM
 
@@ -51,6 +51,44 @@ class Order < ApplicationRecord
 
   def get_order_line_items order_id
     OrderLineItem.where(order_id: order_id)
+  end
+
+  def username user_id
+    User.find_by(id: user_id).name
+  end
+
+  def possible_order_status
+    states = [
+      ['ordered','ordered'],
+      ['dispatched','dispatched'],
+      ['canceled','canceled'],
+      ['delivered','delivered'],
+      ['returned','returned'],
+      ['returnSuccessful','returnSuccessful']
+    ]
+    states
+  end
+
+  def next_valid_status current_status
+    validStatus = {
+      'ordered'=> ['dispatched', 'canceled'],
+      'dispatched'=> ['canceled','delivered'],
+      'canceled'=> [],
+      'delivered'=> ['returned'],
+      'returned'=> ['returnedSuccessful'],
+      'returnSuccessful'=> ['dispatched']
+    }
+    validStatus[current_status]
+  end
+
+  def button_color_based_on_status order
+    if order.status=="canceled"
+      "btn-danger"
+    elsif order.status=="delivered"
+      "btn-success"
+    else
+      "btn-warning"
+    end
   end
 
   private

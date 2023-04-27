@@ -1,0 +1,9 @@
+<div class="container">
+    <h4>Status change</h4>
+    <br/>
+    <%= form_for @order do |f| %>
+        <%= f.label "Status" %> -
+        <%= f.select :status, @order.possible_order_status %>&nbsp;&nbsp;&nbsp;
+        <%= f.submit "Submit" , class: "btn btn-secondary"%>
+    <% end %>
+</div>
