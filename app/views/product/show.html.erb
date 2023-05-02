@@ -7,7 +7,7 @@
         <p>Name: <%= @product.name %></p>
         <p>Description: <%= @product.description %></p>
         <p>Product Price: &#8377; <%= @product.price %></p>
-        <p>
+        <p class="text-center">
             <% if @quantity==0 %>
                 <%= link_to "Add to Cart", add_to_cart_path(@product.id), class: "btn btn-primary" %>
             <% else %>
@@ -16,5 +16,15 @@
                 <span><%= link_to "-" , decrease_product_quantity_path(product_id: @product.id), class: "btn border-dark" %></span>
             <% end %>
         <p>
+        <% if current_user.is_admin==true %>
+            <div class="d-flex justify-content-around">
+                <p style="height:5%">
+                    <%= link_to "Update Product", edit_product_path(@product) , class: "text-decoration-none btn btn-secondary" %>
+                </p>
+                <p style="height:5%">
+                    <%= link_to "Remove Product", root_path(@product), method: :delete,  data: { confirm: 'Are you sure?' } , class: "text-decoration-none btn btn-danger" %>
+                </p>
+            </div>
+        <% end %>
     </div>
 </div>

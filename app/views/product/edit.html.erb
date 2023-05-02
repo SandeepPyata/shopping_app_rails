@@ -1,0 +1,20 @@
+<div class="container">
+    <h4>Update Product Form</h4>
+    <div class="col-3">
+        <%= form_for @product do |f| %>
+            <%= f.label "Name", class: "col-1" %>
+            <%= f.text_field :name %><br/> <br/>
+
+            <%= f.label "Description", class: "col-1" %>
+            <%= f.text_field :description %><br/> <br/>
+
+            <%= f.label "Price", class: "col-1" %>
+            <%= f.text_field :price %><br/> <br/>
+
+            <%= f.label "Image link", class: "col-1" %>
+            <%= f.text_field :image_link %><br/> <br/>
+
+            <%= f.submit 'Update address' %>
+        <% end %>
+    </div>
+</div>

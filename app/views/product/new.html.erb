@@ -2,7 +2,7 @@
 <div class="container">
     <h3>Add Product</h3>
     <hr/>
-    <%= form_with(url: products_path, model: @product, local: true) do |f| %>
+    <%= form_with(url: product_index_path, model: @product, local: true) do |f| %>
         <%= f.label "Name", class: "col-1" %>
         <%= f.text_field :name %><br/> <br/>
 

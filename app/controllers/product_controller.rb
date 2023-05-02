@@ -1,8 +1,9 @@
-class ProductsController < ApplicationController
+class ProductController < ApplicationController
+
+  before_action :set_product, only: [:edit, :update]
 
   def create
-    byebug
-    @product = Product.new(products_params)
+    @product = Product.new(product_params)
     @product.save
     redirect_to root_path
   end
@@ -12,7 +13,7 @@ class ProductsController < ApplicationController
     @products = @q.result(distinct: true)
   end
 
-  def product
+  def show
     product_id = params[:id]
     @product = Product.find_by(id: product_id)
     @quantity = 0
@@ -24,16 +25,26 @@ class ProductsController < ApplicationController
     end
   end
 
+  def update
+    @product.update(params.require(:product).permit(:name, :description, :price, :image_link))
+    @product.save
+    redirect_to product_path
+  end
+
   def destroy
+    byebug
     product_id = params[:id]
-    CartLineItem.delete_by(product_id: product_id)
-    Product.delete_by(id: product_id)
+    @product = Product.find(product_id)
+    @product.destroy
     redirect_to root_path
   end
 
   private
-    def products_params
+    def product_params
       params.permit(:name, :description, :price, :image_link)
     end
 
+    def set_product
+      @product = Product.find(params[:id])
+    end
 end
