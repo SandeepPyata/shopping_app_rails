@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
     next_valid_status = @order.next_valid_status(@order.status)
 
     # check if selected status is a valid transition
-    if next_valid_status.include?(order_params[:status]) || order_params[:status]==@order.status
+    if next_valid_status.include?(order_params[:status])
       @order.update(order_params)
       @order.save
       flash[:notice] = "Order status updated"

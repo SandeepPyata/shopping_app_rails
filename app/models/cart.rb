@@ -30,5 +30,13 @@ class Cart < ApplicationRecord
       sum + Product.find_by(id: cart_item.product_id).price * cart_item.quantity
     }
   end
+  # Quantity is updated from cart -> redirection based on previous page
+  def redirect_to_path url, product_id
+    path = url.split("/").last
+    if url.include? "my_cart"
+      return Rails.application.routes.url_helpers.my_cart_path
+    end
+    return Rails.application.routes.url_helpers.product_path(product_id)
+  end
 
 end

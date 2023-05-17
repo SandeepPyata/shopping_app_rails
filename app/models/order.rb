@@ -64,7 +64,7 @@ class Order < ApplicationRecord
       ['canceled','canceled'],
       ['delivered','delivered'],
       ['returned','returned'],
-      ['returnSuccessful','returnSuccessful']
+      ['returnedSuccessful','returnedSuccessful']
     ]
     states
   end
