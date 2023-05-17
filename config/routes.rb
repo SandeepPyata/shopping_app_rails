@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   # end
 
 
-  get "show_users", to: "users#show"
+  get "/users", to: "users#index"
+  delete "/delete_user/:id", to: "users#destroy"
 
   # for sign_out
   devise_scope :user do

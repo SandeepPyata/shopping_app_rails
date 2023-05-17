@@ -17,12 +17,15 @@ class ProductController < ApplicationController
     product_id = params[:id]
     @product = Product.find_by(id: product_id)
     @quantity = 0
-    if !current_user.cart.nil?
-      cart_line_item = CartLineItem.find_by(cart_id: current_user.cart.id, product_id: product_id)
-      if cart_line_item.present?
-        @quantity = cart_line_item.quantity
-      end
+    if current_user.cart.present?
+      cart_line_item = current_user.cart.cart_line_items.where(product_id: product_id)
     end
+    #if !current_user.cart.nil?
+      #cart_line_item = CartLineItem.find_by(cart_id: current_user.cart.id, product_id: product_id)
+      #if cart_line_item.present?
+        #@quantity = cart_line_item.quantity
+      #end
+    #end
   end
 
   def update
